@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>生成 PWA 图标</title>
+<style>
+  body { font-family: sans-serif; padding: 40px; background: #F5F5F7; }
+  .container { max-width: 500px; margin: 0 auto; background: white; padding: 32px; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  h1 { font-size: 20px; margin-bottom: 16px; }
+  p { font-size: 14px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+  .btn { padding: 12px 24px; background: #7B61FF; color: white; border: none; border-radius: 10px; font-size: 15px; cursor: pointer; }
+  .btn:hover { background: #6A4FE8; }
+  .status { margin-top: 16px; font-size: 13px; color: #333; }
+  canvas { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🔮 生成 PWA 图标</h1>
+  <p>点击按钮，自动生成 192×192 和 512×512 的 PNG 图标，并下载到你的电脑。<br>把下载的图标放到 <code>growth-site/</code> 目录下即可。</p>
+  <button class="btn" onclick="generateIcons()">生成并下载图标</button>
+  <div class="status" id="status"></div>
+</div>
+
+<canvas id="c192" width="192" height="192"></canvas>
+<canvas id="c512" width="512" height="512"></canvas>
+
+<script>
+function drawIcon(ctx, size) {
+  // Background gradient
+  const grad = ctx.createLinearGradient(0, 0, size, size);
+  grad.addColorStop(0, '#7B61FF');
+  grad.addColorStop(1, '#5B45D9');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, size * 0.2);
+  ctx.fill();
+
+  // Growth arrow
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = size * 0.04;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  const s = size * 0.25;
+  ctx.moveTo(-s * 1.2, -s * 0.3);
+  ctx.lineTo(-s * 0.6, -s * 0.6);
+  ctx.lineTo(0, -s * 0.15);
+  ctx.lineTo(s * 0.6, -s * 0.75);
+  ctx.lineTo(s * 1.2, -s * 0.45);
+  ctx.stroke();
+
+  // Circles at ends
+  ctx.fillStyle = 'white';
+  ctx.beginPath(); ctx.arc(-s * 1.2, -s * 0.3, size * 0.025, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(s * 1.2, -s * 0.45, size * 0.025, 0, Math.PI * 2); ctx.fill();
+
+  // Sparkle
+  ctx.save();
+  ctx.translate(s * 1.0, -s * 1.1);
+  ctx.fillStyle = 'white';
+  ctx.globalAlpha = 0.8;
+  const sparkleSize = size * 0.04;
+  ctx.beginPath();
+  ctx.moveTo(0, -sparkleSize);
+  ctx.lineTo(sparkleSize * 0.25, -sparkleSize * 0.25);
+  ctx.lineTo(sparkleSize, 0);
+  ctx.lineTo(sparkleSize * 0.25, sparkleSize * 0.25);
+  ctx.lineTo(0, sparkleSize);
+  ctx.lineTo(-sparkleSize * 0.25, sparkleSize * 0.25);
+  ctx.lineTo(-sparkleSize, 0);
+  ctx.lineTo(-sparkleSize * 0.25, -sparkleSize * 0.25);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function generateIcons() {
+  const status = document.getElementById('status');
+  status.textContent = '正在生成...';
+
+  // 192
+  const c192 = document.getElementById('c192');
+  const ctx192 = c192.getContext('2d');
+  ctx192.clearRect(0, 0, 192, 192);
+  ctx192.save();
+  ctx192.translate(96, 110);
+  drawIcon(ctx192, 192);
+  ctx192.restore();
+  downloadCanvas(c192, 'icon-192.png');
+
+  // 512
+  const c512 = document.getElementById('c512');
+  const ctx512 = c512.getContext('2d');
+  ctx512.clearRect(0, 0, 512, 512);
+  ctx512.save();
+  ctx512.translate(256, 295);
+  drawIcon(ctx512, 512);
+  ctx512.restore();
+  setTimeout(() => downloadCanvas(c512, 'icon-512.png'), 200);
+
+  // Maskable 512 (with padding for safe area)
+  setTimeout(() => {
+    const cM = document.createElement('canvas');
+    cM.width = 512; cM.height = 512;
+    const ctxM = cM.getContext('2d');
+    // Fill entire square with gradient
+    const grad = ctxM.createLinearGradient(0, 0, 512, 512);
+    grad.addColorStop(0, '#7B61FF');
+    grad.addColorStop(1, '#5B45D9');
+    ctxM.fillStyle = grad;
+    ctxM.fillRect(0, 0, 512, 512);
+    // Draw icon centered with more padding
+    ctxM.save();
+    ctxM.translate(256, 256);
+    drawIcon(ctxM, 512);
+    ctxM.restore();
+    downloadCanvas(cM, 'icon-maskable-512.png');
+    status.innerHTML = '✅ 图标已生成并下载！<br>请把 3 个 PNG 文件放到 <code>growth-site/</code> 目录下。';
+  }, 400);
+}
+
+function downloadCanvas(canvas, filename) {
+  const a = document.createElement('a');
+  a.download = filename;
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>

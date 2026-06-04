@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B61FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5B45D9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#bg)"/>
+
+  <!-- Growth arrow icon -->
+  <g transform="translate(256, 256)" fill="none" stroke="white" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Upward trend line -->
+    <polyline points="-120,-40 -60,-80 0,-20 60,-100 120,-60" />
+    <!-- Circle at start -->
+    <circle cx="-120" cy="-40" r="12" fill="white" />
+    <!-- Circle at end -->
+    <circle cx="120" cy="-60" r="12" fill="white" />
+  </g>
+
+  <!-- Small sparkle -->
+  <g transform="translate(380, 120)">
+    <path d="M0,-20 L5,-5 L20,0 L5,5 L0,20 L-5,5 L-20,0 L-5,-5 Z" fill="white" opacity="0.8"/>
+  </g>
+</svg>
