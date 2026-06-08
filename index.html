@@ -45,7 +45,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
-  padding-bottom: 100px; /* space for dynamic island */
+  padding-bottom: 100px;
   -webkit-font-smoothing: antialiased;
 }
 button { cursor: pointer; font-family: inherit; border: none; background: none; }
@@ -53,570 +53,301 @@ input, textarea, select { font-family: inherit; }
 
 /* ===== Top Search Bar ===== */
 .topsearch {
-  position: sticky;
-  top: 0;
-  z-index: 200;
+  position: sticky; top: 0; z-index: 200;
   background: rgba(255,255,255,0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 10px 16px;
   border-bottom: 1px solid var(--border);
 }
-.topsearch__inner {
-  max-width: 560px;
-  margin: 0 auto;
-  position: relative;
-}
+.topsearch__inner { max-width: 560px; margin: 0 auto; position: relative; }
 .topsearch__input {
-  width: 100%;
-  padding: 10px 14px 10px 38px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  outline: none;
-  background: var(--bg);
-  transition: all 0.2s;
+  width: 100%; padding: 10px 14px 10px 38px;
+  border: 1px solid var(--border); border-radius: 10px;
+  font-size: 14px; outline: none; background: var(--bg); transition: all 0.2s;
 }
-.topsearch__input:focus {
-  border-color: var(--purple);
-  background: var(--surface);
-  box-shadow: 0 0 0 3px rgba(123,97,255,0.1);
-}
-.topsearch__icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text3);
-  font-size: 15px;
-  pointer-events: none;
-}
+.topsearch__input:focus { border-color: var(--purple); background: var(--surface); box-shadow: 0 0 0 3px rgba(123,97,255,0.1); }
+.topsearch__icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 15px; pointer-events: none; }
 .topsearch__clear {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--text3);
-  color: white;
-  font-size: 12px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border-radius: 50%; background: var(--text3);
+  color: white; font-size: 12px;
+  display: none; align-items: center; justify-content: center; cursor: pointer;
 }
 .topsearch__clear.show { display: flex; }
 
 /* Search Results Dropdown */
 .search-results {
-  position: absolute;
-  top: 48px;
-  left: 0;
-  right: 0;
-  background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
-  max-height: 360px;
-  overflow-y: auto;
-  display: none;
-  z-index: 300;
+  position: absolute; top: 48px; left: 0; right: 0;
+  background: var(--surface); border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+  max-height: 360px; overflow-y: auto; display: none; z-index: 300;
 }
 .search-results.active { display: block; }
 .search-result-item {
-  padding: 11px 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: background 0.1s;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
+  padding: 11px 14px; display: flex; align-items: center; gap: 10px;
+  cursor: pointer; transition: background 0.1s; border-bottom: 1px solid var(--border); font-size: 13px;
 }
 .search-result-item:last-child { border-bottom: none; }
-.search-result-item:hover { background: var(--gray-bg); }
+.search-result-item:hover { background: var(--purple-bg); }
 .search-result-item__icon { font-size: 16px; flex-shrink: 0; }
 .search-result-item__text { flex: 1; }
 .search-result-item__cat { font-size: 11px; color: var(--text3); }
-.search-empty {
-  padding: 24px;
-  text-align: center;
-  color: var(--text3);
-  font-size: 13px;
-}
+.search-empty { padding: 24px; text-align: center; color: var(--text3); font-size: 13px; }
 
-/* ===== DYNAMIC ISLAND NAV ===== */
+/* ===== Dynamic Island Nav ===== */
 .dynamic-island {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 500;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 500; display: flex; align-items: center; gap: 4px;
   background: rgba(29,29,31,0.92);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  padding: 6px 8px;
-  border-radius: 24px;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  padding: 6px 8px; border-radius: 24px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.25);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.dynamic-island.expanded {
-  border-radius: 20px;
-  padding: 8px 12px;
-  gap: 2px;
-}
+.dynamic-island.expanded { border-radius: 20px; padding: 8px 12px; gap: 2px; }
 .island-btn {
-  width: 44px;
-  height: 36px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  color: rgba(255,255,255,0.5);
-  font-size: 10px;
-  transition: all 0.25s;
-  position: relative;
-  cursor: pointer;
+  width: 44px; height: 36px; border-radius: 12px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1px; color: rgba(255,255,255,0.5); font-size: 10px;
+  transition: all 0.25s; position: relative; cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 .island-btn .icon { font-size: 17px; line-height: 1; }
 .island-btn .label { font-size: 9px; letter-spacing: 0.02em; }
 .island-btn:hover { color: rgba(255,255,255,0.8); }
-.island-btn.active {
-  color: white;
-  background: rgba(255,255,255,0.15);
-}
+.island-btn.active { color: white; background: rgba(255,255,255,0.15); }
 .island-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: 3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--purple);
+  content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%; background: var(--purple);
 }
 
-/* Island expanded state labels */
-.dynamic-island.expanded .island-btn .label { display: block; }
-.dynamic-island:not(.expanded) .island-btn .label { display: none; }
-
-/* ===== PAGE CONTENT ===== */
+/* ===== Page ===== */
 .page { display: none; padding: 16px; max-width: 560px; margin: 0 auto; }
 .page.active { display: block; }
+.module-page { display: none; padding: 16px; max-width: 680px; margin: 0 auto; padding-bottom: 100px; }
+.module-page.active { display: block; }
 
-/* ===== GREETING (Home Top) ===== */
-.greeting {
-  padding: 8px 0 20px;
-}
-.greeting__hello {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-.greeting__sub {
-  font-size: 13px;
-  color: var(--text2);
-  margin-top: 4px;
-}
-
-/* Date pill */
+/* ===== Greeting ===== */
+.greeting { padding: 8px 0 20px; }
+.greeting__hello { font-size: 26px; font-weight: 700; line-height: 1.3; }
+.greeting__sub { font-size: 13px; color: var(--text2); margin-top: 4px; }
 .date-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 12px;
-  color: var(--text2);
-  margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 5px 14px; font-size: 12px; color: var(--text2); margin-top: 12px;
 }
 
-/* ===== TODAY SECTION ===== */
-.today-section {
-  margin-bottom: 28px;
-}
+/* ===== Today Section ===== */
+.today-section { margin-bottom: 28px; }
 .today-section__title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 13px; font-weight: 600; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: space-between;
 }
-.today-section__title a {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--purple);
-  text-transform: none;
-  letter-spacing: 0;
-}
+.today-section__title a { font-size: 12px; font-weight: 500; color: var(--purple); text-transform: none; letter-spacing: 0; }
 
 /* Today Task Cards */
 .today-task {
-  background: var(--surface);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-bottom: 8px;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: all 0.15s;
+  background: var(--surface); border-radius: var(--radius-sm);
+  padding: 14px 16px; margin-bottom: 8px; border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.15s;
 }
 .today-task:hover { box-shadow: var(--shadow); }
 .today-task__check {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 2px solid var(--border2);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
+  width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border2);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; cursor: pointer;
 }
-.today-task__check.done {
-  background: var(--green);
-  border-color: var(--green);
-}
+.today-task__check.done { background: var(--green); border-color: var(--green); }
 .today-task__check.done::after { content: '✓'; color: white; font-size: 12px; font-weight: 700; }
 .today-task__body { flex: 1; min-width: 0; }
-.today-task__title {
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.today-task__title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .today-task__title.done { text-decoration: line-through; color: var(--text3); }
 .today-task__meta { display: flex; gap: 6px; margin-top: 4px; }
-.today-task__empty {
-  text-align: center;
-  padding: 32px 16px;
-  color: var(--text3);
-  font-size: 13px;
-}
+.today-task__empty { text-align: center; padding: 32px 16px; color: var(--text3); font-size: 13px; }
 .today-task__empty .icon { font-size: 32px; margin-bottom: 8px; display: block; }
 
-/* Progress ring for habits */
-.habit-ring-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--surface);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  margin-bottom: 8px;
-  border: 1px solid var(--border);
+/* Habit ring */
+.habit-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border-radius: var(--radius-sm);
+  padding: 12px 16px; margin-bottom: 8px; border: 1px solid var(--border);
 }
-.habit-ring {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  position: relative;
+.habit-card__icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
 }
-.habit-ring__pct {
-  position: absolute;
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--text2);
+.habit-card__info { flex: 1; }
+.habit-card__name { font-size: 13px; font-weight: 500; }
+.habit-card__streak { font-size: 11px; color: var(--text2); }
+.habit-card__btn {
+  padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 500;
+  transition: all 0.15s; flex-shrink: 0;
 }
-.habit-ring__info { flex: 1; }
-.habit-ring__name { font-size: 13px; font-weight: 500; }
-.habit-ring__streak { font-size: 11px; color: var(--text2); }
 
-/* Quick add button */
-.quick-add {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
+/* Quick add */
+.quick-add { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
 .quick-add__btn {
-  padding: 8px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  font-size: 12px;
-  color: var(--text2);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: all 0.15s;
+  padding: 8px 14px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; font-size: 12px; color: var(--text2);
+  display: flex; align-items: center; gap: 4px; transition: all 0.15s;
 }
 .quick-add__btn:hover { background: var(--purple-bg); color: var(--purple); border-color: var(--purple); }
 
-/* ===== MODULE PAGES ===== */
-.module-page {
-  display: none;
-  padding: 16px;
-  max-width: 680px;
-  margin: 0 auto;
-  padding-bottom: 100px;
-}
-.module-page.active { display: block; }
-.module-page__header {
-  margin-bottom: 20px;
-}
-.module-page__title {
-  font-size: 22px;
-  font-weight: 700;
-}
-.module-page__subtitle {
-  font-size: 13px;
-  color: var(--text2);
-  margin-top: 4px;
-}
+/* ===== Module Pages ===== */
+.module-page__header { margin-bottom: 20px; }
+.module-page__title { font-size: 22px; font-weight: 700; }
+.module-page__subtitle { font-size: 13px; color: var(--text2); margin-top: 4px; }
 
-/* Kanban in module page */
-.kanban {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 600px) {
-  .kanban { grid-template-columns: 1fr; }
-}
-.kanban-col {
-  background: var(--bg);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-}
+/* Kanban */
+.kanban { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .kanban { grid-template-columns: 1fr; } }
+.kanban-col { background: var(--bg); border-radius: var(--radius-sm); padding: 12px; }
 .kanban-col__title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text2);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 12px; font-weight: 600; color: var(--text2); margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: space-between;
 }
-.kanban-col__count {
-  font-size: 10px;
-  background: var(--surface);
-  border-radius: 8px;
-  padding: 1px 7px;
-}
+.kanban-col__count { font-size: 10px; background: var(--surface); border-radius: 8px; padding: 1px 7px; }
 .kanban-card {
-  background: var(--surface);
-  border-radius: 8px;
-  padding: 10px 12px;
-  margin-bottom: 6px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all 0.15s;
+  background: var(--surface); border-radius: 8px; padding: 10px 12px;
+  margin-bottom: 6px; border: 1px solid var(--border); cursor: pointer; transition: all 0.15s;
 }
 .kanban-card:hover { box-shadow: var(--shadow); }
 .kanban-card__title { font-size: 13px; font-weight: 500; }
-.kanban-card__progress {
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  margin-top: 8px;
-  overflow: hidden;
-}
-.kanban-card__progress-bar {
-  height: 100%;
-  border-radius: 2px;
-  background: var(--purple);
-  transition: width 0.3s;
-}
+.kanban-card__progress { height: 3px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.kanban-card__progress-bar { height: 100%; border-radius: 2px; background: var(--purple); transition: width 0.3s; }
 
-/* ===== MODAL ===== */
+/* ===== Calendar ===== */
+.calendar-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; padding: 0 4px;
+}
+.calendar-nav__title { font-size: 17px; font-weight: 600; }
+.calendar-nav__btn {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--surface);
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: all 0.15s;
+}
+.calendar-nav__btn:hover { background: var(--purple-bg); color: var(--purple); }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 16px; }
+.calendar-grid__header {
+  text-align: center; font-size: 11px; font-weight: 600; color: var(--text3);
+  padding: 6px 0;
+}
+.calendar-day {
+  aspect-ratio: 1; border-radius: 10px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; cursor: pointer; position: relative;
+  transition: all 0.15s; font-size: 13px; border: none; background: transparent;
+}
+.calendar-day:hover { background: var(--purple-bg); }
+.calendar-day.today { background: var(--purple); color: white; font-weight: 600; }
+.calendar-day.other-month { color: var(--text3); opacity: 0.4; }
+.calendar-day.selected { background: var(--purple-bg); color: var(--purple); font-weight: 600; }
+.calendar-day__dots {
+  position: absolute; bottom: 3px; display: flex; gap: 2px;
+}
+.calendar-day__dot {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+.calendar-detail {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 16px; margin-top: 8px;
+}
+.calendar-detail__date { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+.calendar-detail__section { margin-bottom: 12px; }
+.calendar-detail__section-title {
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 6px;
+}
+.calendar-detail__item {
+  font-size: 13px; padding: 4px 0; display: flex; align-items: center; gap: 6px;
+}
+.calendar-detail__empty { font-size: 12px; color: var(--text3); padding: 4px 0; }
+
+/* ===== Modal ===== */
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 1000;
-  display: none;
-  align-items: flex-end;
-  justify-content: center;
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000;
+  display: none; align-items: flex-end; justify-content: center;
 }
 .modal-overlay.active { display: flex; }
 .modal {
-  background: var(--surface);
-  border-radius: 18px 18px 0 0;
-  width: 100%;
-  max-width: 500px;
-  max-height: 85vh;
-  overflow-y: auto;
-  box-shadow: 0 -4px 32px rgba(0,0,0,0.15);
-  animation: slideUp 0.3s ease;
+  background: var(--surface); border-radius: 18px 18px 0 0; width: 100%;
+  max-width: 500px; max-height: 85vh; overflow-y: auto;
+  box-shadow: 0 -4px 32px rgba(0,0,0,0.15); animation: slideUp 0.3s ease;
 }
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 .modal__header {
-  padding: 16px 20px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  background: var(--surface);
-  border-radius: 18px 18px 0 0;
+  padding: 16px 20px 12px; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: var(--surface); border-radius: 18px 18px 0 0;
 }
 .modal__title { font-size: 16px; font-weight: 600; }
 .modal__close {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: var(--text2);
+  width: 28px; height: 28px; border-radius: 50%; background: var(--bg);
+  display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text2);
 }
 .modal__body { padding: 0 20px 16px; }
-.modal__footer {
-  padding: 12px 20px 24px;
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
+.modal__footer { padding: 12px 20px 24px; display: flex; gap: 8px; justify-content: flex-end; }
 
 /* Form */
 .form-group { margin-bottom: 14px; }
-.form-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text2);
-  margin-bottom: 5px;
-}
+.form-label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 5px; }
 .form-input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  outline: none;
-  background: var(--bg);
-  transition: border-color 0.2s;
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 14px; outline: none; background: var(--bg); transition: border-color 0.2s;
 }
 .form-input:focus { border-color: var(--purple); background: var(--surface); }
 .form-textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  outline: none;
-  resize: vertical;
-  min-height: 80px;
-  background: var(--bg);
-  transition: border-color 0.2s;
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 14px; outline: none; resize: vertical;
+  min-height: 80px; background: var(--bg); transition: border-color 0.2s;
 }
 .form-textarea:focus { border-color: var(--purple); background: var(--surface); }
 .form-select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  font-size: 14px;
-  outline: none;
-  background: var(--bg);
-  cursor: pointer;
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 14px; outline: none; background: var(--bg); cursor: pointer;
 }
 
 /* Buttons */
-.btn {
-  padding: 9px 18px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  transition: all 0.15s;
-}
+.btn { padding: 9px 18px; border-radius: 10px; font-size: 14px; font-weight: 500; border: 1px solid var(--border); background: var(--surface); transition: all 0.15s; }
 .btn:hover { background: var(--bg); }
 .btn-primary { background: var(--purple); color: white; border-color: var(--purple); }
 .btn-primary:hover { background: #6A4FE8; }
 .btn-danger { color: var(--coral); }
 .btn-sm { padding: 6px 12px; font-size: 12px; }
 
-/* ===== Knowledge List ===== */
+/* VFX Progress */
+.vfx-item {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 8px;
+}
+.vfx-item__name { flex: 1; font-size: 14px; }
+.vfx-item__bar-wrap { width: 100px; }
+.vfx-item__bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.vfx-item__bar-fill { height: 100%; background: var(--blue); border-radius: 4px; transition: width 0.3s; }
+.vfx-item__pct { font-size: 13px; font-weight: 600; min-width: 38px; text-align: right; }
+.vfx-item__slider { width: 100px; accent-color: var(--blue); cursor: pointer; }
+
+/* Knowledge */
 .knowledge-list { }
 .knowledge-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: all 0.15s;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 8px;
+  cursor: pointer; transition: all 0.15s;
 }
 .knowledge-card:hover { box-shadow: var(--shadow); }
 .knowledge-card__title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
 .knowledge-card__meta { font-size: 11px; color: var(--text2); display: flex; gap: 10px; }
 
-/* ===== VFX Progress ===== */
-.vfx-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-bottom: 8px;
-}
-.vfx-item__name { flex: 1; font-size: 14px; }
-.vfx-item__bar-wrap { width: 100px; }
-.vfx-item__bar {
-  height: 8px;
-  background: var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.vfx-item__bar-fill {
-  height: 100%;
-  background: var(--blue);
-  border-radius: 4px;
-  transition: width 0.3s;
-}
-.vfx-item__pct { font-size: 13px; font-weight: 600; min-width: 38px; text-align: right; }
-.vfx-item__slider { width: 100px; }
-
-/* ===== Finance ===== */
+/* Finance */
 .finance-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border);
 }
 .finance-card__cat {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
 }
 .finance-card__info { flex: 1; }
 .finance-card__name { font-size: 13px; }
@@ -624,36 +355,18 @@ input, textarea, select { font-family: inherit; }
 .finance-card__amount { font-weight: 600; }
 .finance-card__amount.in { color: var(--green); }
 
-/* ===== Toast ===== */
+/* Toast */
 .toast {
-  position: fixed;
-  bottom: 90px;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: #1D1D1F;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 13px;
-  opacity: 0;
-  transition: all 0.3s;
-  z-index: 2000;
-  pointer-events: none;
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(10px);
+  background: #1D1D1F; color: white; padding: 10px 20px; border-radius: 10px;
+  font-size: 13px; opacity: 0; transition: all 0.3s; z-index: 2000; pointer-events: none;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-/* ===== FAB Timer ===== */
-.timer-fab {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  z-index: 400;
-}
 </style>
 </head>
 <body>
 
-<!-- ===== TOP SEARCH BAR ===== -->
+<!-- ===== Top Search Bar ===== -->
 <div class="topsearch">
   <div class="topsearch__inner">
     <span class="topsearch__icon">🔍</span>
@@ -664,7 +377,7 @@ input, textarea, select { font-family: inherit; }
   </div>
 </div>
 
-<!-- ===== GREETING + TODAY (HOME) ===== -->
+<!-- ===== Greeting + Today (Home) ===== -->
 <div class="page active" id="page-home">
   <div class="greeting">
     <div class="greeting__hello" id="greetingHello"></div>
@@ -708,7 +421,7 @@ input, textarea, select { font-family: inherit; }
   </div>
 </div>
 
-<!-- ===== TASKS MODULE PAGE ===== -->
+<!-- ===== Tasks Module Page ===== -->
 <div class="module-page" id="page-tasks">
   <div class="module-page__header">
     <div class="module-page__title">📋 任务看板</div>
@@ -733,7 +446,7 @@ input, textarea, select { font-family: inherit; }
   </div>
 </div>
 
-<!-- ===== HABITS MODULE PAGE ===== -->
+<!-- ===== Habits Module Page ===== -->
 <div class="module-page" id="page-habits">
   <div class="module-page__header">
     <div class="module-page__title">✅ 习惯打卡</div>
@@ -745,7 +458,7 @@ input, textarea, select { font-family: inherit; }
   <div id="habitsPageList"></div>
 </div>
 
-<!-- ===== VFX MODULE PAGE ===== -->
+<!-- ===== VFX Module Page ===== -->
 <div class="module-page" id="page-vfx">
   <div class="module-page__header">
     <div class="module-page__title">🎨 VFX 学习进度</div>
@@ -757,7 +470,7 @@ input, textarea, select { font-family: inherit; }
   <div id="vfxPageList"></div>
 </div>
 
-<!-- ===== KNOWLEDGE MODULE PAGE ===== -->
+<!-- ===== Knowledge Module Page ===== -->
 <div class="module-page" id="page-knowledge">
   <div class="module-page__header">
     <div class="module-page__title">📚 知识库</div>
@@ -773,7 +486,7 @@ input, textarea, select { font-family: inherit; }
   <div id="knowledgeReader" style="display:none"></div>
 </div>
 
-<!-- ===== FINANCE MODULE PAGE ===== -->
+<!-- ===== Finance Module Page ===== -->
 <div class="module-page" id="page-finance">
   <div class="module-page__header">
     <div class="module-page__title">💰 财务管理</div>
@@ -786,7 +499,24 @@ input, textarea, select { font-family: inherit; }
   <div id="financeList"></div>
 </div>
 
-<!-- ===== HEALTH MODULE PAGE ===== -->
+<!-- ===== Calendar Module Page (NEW) ===== -->
+<div class="module-page" id="page-calendar">
+  <div class="module-page__header">
+    <div class="module-page__title">📅 成长日历</div>
+    <div class="module-page__subtitle">每日记录归档</div>
+  </div>
+  <div class="calendar-nav">
+    <button class="calendar-nav__btn" onclick="calendarPrevMonth()">‹</button>
+    <div class="calendar-nav__title" id="calendarTitle"></div>
+    <button class="calendar-nav__btn" onclick="calendarNextMonth()">›</button>
+  </div>
+  <div class="calendar-grid" id="calendarGrid"></div>
+  <div class="calendar-detail" id="calendarDetail">
+    <div class="calendar-detail__date" id="calendarDetailDate">选择一个日期查看记录</div>
+  </div>
+</div>
+
+<!-- ===== Health Module Page ===== -->
 <div class="module-page" id="page-health">
   <div class="module-page__header">
     <div class="module-page__title">🏃 健康记录</div>
@@ -798,8 +528,7 @@ input, textarea, select { font-family: inherit; }
   <div style="color:var(--text2);font-size:13px;padding:20px 0">健康模块 — 体重、睡眠、运动记录（待完善）</div>
 </div>
 
-
-<!-- ===== DYNAMIC ISLAND NAV ===== -->
+<!-- ===== Dynamic Island Nav ===== -->
 <div class="dynamic-island" id="dynamicIsland">
   <button class="island-btn active" data-page="home" onclick="navTo('home')">
     <span class="icon">🏠</span>
@@ -817,6 +546,10 @@ input, textarea, select { font-family: inherit; }
     <span class="icon">🎨</span>
     <span class="label">VFX</span>
   </button>
+  <button class="island-btn" data-page="calendar" onclick="navTo('calendar')">
+    <span class="icon">📅</span>
+    <span class="label">日历</span>
+  </button>
   <button class="island-btn" data-page="knowledge" onclick="navTo('knowledge')">
     <span class="icon">📚</span>
     <span class="label">知识</span>
@@ -831,8 +564,7 @@ input, textarea, select { font-family: inherit; }
   </button>
 </div>
 
-
-<!-- ===== MODAL ===== -->
+<!-- ===== Modal ===== -->
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="modal__header">
@@ -844,7 +576,7 @@ input, textarea, select { font-family: inherit; }
   </div>
 </div>
 
-<!-- ===== PWA INSTALL PROMPT ===== -->
+<!-- ===== PWA Install Prompt ===== -->
 <div id="pwaInstallBanner" style="display:none;position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 20px;box-shadow:var(--shadow-lg);z-index:600;max-width:340px;width:90%">
   <div style="font-size:13px;font-weight:600;margin-bottom:4px">安装「成长记录」</div>
   <div style="font-size:11px;color:var(--text2);margin-bottom:10px">安装到主屏幕，像原生 App 一样使用</div>
@@ -854,7 +586,7 @@ input, textarea, select { font-family: inherit; }
   </div>
 </div>
 
-<!-- ===== TOAST ===== -->
+<!-- ===== Toast ===== -->
 <div class="toast" id="toast"></div>
 
 <script>
@@ -898,6 +630,8 @@ let data = DB.get('growthData', {
   ],
   focusLogs: [],
   healthLogs: [],
+  // Calendar daily archive: { "2026-06-09": { tasksCompleted: [1], habitsDone: [1,2], note: "" } }
+  calendarRecords: {},
 });
 
 function save() { DB.set('growthData', data); }
@@ -906,27 +640,26 @@ function save() { DB.set('growthData', data); }
 // NAVIGATION
 // ===========================
 function navTo(page) {
-  // Hide all
   document.querySelectorAll('.page, .module-page').forEach(el => el.classList.remove('active'));
-  // Show target
   const target = document.getElementById('page-' + page);
   if (target) target.classList.add('active');
-  // Update island
+
   document.querySelectorAll('.island-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.page === page);
   });
-  // Expand island on mobile
+
   const island = document.getElementById('dynamicIsland');
   if (page !== 'home') island.classList.add('expanded');
   else island.classList.remove('expanded');
 
-  // Render
-  if (page === 'home')    renderHome();
-  if (page === 'tasks')   renderTasks();
-  if (page === 'habits')  renderHabitsPage();
-  if (page === 'vfx')     renderVfxPage();
+  if (page === 'home') renderHome();
+  if (page === 'tasks') renderTasks();
+  if (page === 'habits') renderHabitsPage();
+  if (page === 'vfx') renderVfxPage();
   if (page === 'knowledge') renderKnowledge();
   if (page === 'finance') renderFinance();
+  if (page === 'calendar') renderCalendar();
+  if (page === 'health') { /* placeholder */ }
 }
 
 // ===========================
@@ -956,6 +689,7 @@ function renderHome() {
   renderTodayVfx();
 }
 
+// ---- Today Tasks ----
 function renderTodayTasks() {
   const container = document.getElementById('todayTasks');
   const activeTasks = data.tasks.filter(t => t.status !== 'done').slice(0, 5);
@@ -964,10 +698,10 @@ function renderTodayTasks() {
     return;
   }
   container.innerHTML = activeTasks.map(t => `
-    <div class="today-task" onclick="editTask(${t.id})">
-      <div class="today-task__check"></div>
+    <div class="today-task" onclick="event.stopPropagation(); editTask(${t.id})">
+      <div class="today-task__check ${t.status==='done'?'done':''}" onclick="event.stopPropagation(); toggleTaskDone(${t.id})"></div>
       <div class="today-task__body">
-        <div class="today-task__title">${esc(t.title)}</div>
+        <div class="today-task__title ${t.status==='done'?'done':''}">${esc(t.title)}</div>
         <div class="today-task__meta">
           <span style="font-size:11px;color:var(--text2)">${t.progress || 0}% 完成</span>
         </div>
@@ -976,6 +710,17 @@ function renderTodayTasks() {
   `).join('');
 }
 
+function toggleTaskDone(id) {
+  const t = data.tasks.find(t => t.id === id);
+  if (!t) return;
+  if (t.status === 'done') { t.status = 'active'; }
+  else { t.status = 'done'; t.progress = 100; }
+  save();
+  renderHome();
+  renderTasks();
+}
+
+// ---- Today Habits (FIX #1: button now works) ----
 function renderTodayHabits() {
   const container = document.getElementById('todayHabits');
   const today = getToday();
@@ -983,21 +728,23 @@ function renderTodayHabits() {
     const done = h.records[today];
     const streak = calcStreak(h);
     return `
-      <div class="habit-ring-wrap" onclick="toggleHabit(${h.id})">
-        <div class="habit-ring" style="background:${done ? 'var(--green-bg)' : 'var(--gray-bg)'}">
+      <div class="habit-card">
+        <div class="habit-card__icon" style="background:${done ? 'var(--green-bg)' : 'var(--bg)'}">
           <span>${h.icon}</span>
         </div>
-        <div class="habit-ring__info">
-          <div class="habit-ring__name">${esc(h.name)}</div>
-          <div class="habit-ring__streak">🔥 连续 ${streak} 天</div>
+        <div class="habit-card__info">
+          <div class="habit-card__name">${esc(h.name)}</div>
+          <div class="habit-card__streak">🔥 连续 ${streak} 天</div>
         </div>
-        <button class="btn btn-sm ${done ? '' : 'btn-primary'}" style="flex-shrink:0">
-          ${done ? '已打卡' : '打卡'}
+        <button class="habit-card__btn ${done ? 'btn-sm' : 'btn-sm btn-primary'}"
+          onclick="event.stopPropagation(); toggleHabit(${h.id}); renderTodayHabits()">
+          ${done ? '✓ 已打卡' : '打卡'}
         </button>
       </div>`;
   }).join('');
 }
 
+// ---- Today VFX ----
 function renderTodayVfx() {
   const container = document.getElementById('todayVfx');
   const avg = Math.round(data.vfxSkills.reduce((s,v)=>s+v.progress,0)/data.vfxSkills.length);
@@ -1059,7 +806,9 @@ function renderHabitsPage() {
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
           <span style="font-size:14px;font-weight:600">${h.icon} ${esc(h.name)}</span>
           <div style="display:flex;gap:6px">
-            <button class="btn btn-sm ${done?'':''}" onclick="toggleHabit(${h.id});renderHabitsPage()" style="${done?'background:var(--green-bg);color:var(--green)':''}">${done?'✓ 已打卡':'打卡'}</button>
+            <button class="btn btn-sm ${done?'':'btn-primary'}" onclick="toggleHabit(${h.id});renderHabitsPage()" style="${done?'background:var(--green-bg);color:var(--green)':''}">
+              ${done ? '✓ 已打卡' : '打卡'}
+            </button>
             <button class="btn btn-sm btn-danger" onclick="if(confirm('删除此习惯？')){data.habits=data.habits.filter(x=>x.id!==${h.id});save();renderHabitsPage()}">删除</button>
           </div>
         </div>
@@ -1070,7 +819,7 @@ function renderHabitsPage() {
 }
 
 // ===========================
-// VFX MODULE PAGE
+// VFX MODULE PAGE (FIX #2: slider works smoothly)
 // ===========================
 function renderVfxPage() {
   const container = document.getElementById('vfxPageList');
@@ -1080,15 +829,33 @@ function renderVfxPage() {
       <div class="vfx-item__bar-wrap"><div class="vfx-item__bar"><div class="vfx-item__bar-fill" style="width:${s.progress}%"></div></div></div>
       <div class="vfx-item__pct">${s.progress}%</div>
       <input class="vfx-item__slider" type="range" min="0" max="100" value="${s.progress}"
-        oninput="updateVfxProgress(${s.id}, this.value)">
+        oninput="updateVfxProgressLive(${s.id}, this.value)"
+        onchange="updateVfxProgressFinal(${s.id}, this.value)">
       <button class="btn btn-sm btn-danger" onclick="if(confirm('删除？')){data.vfxSkills=data.vfxSkills.filter(x=>x.id!==${s.id});save();renderVfxPage()}">✕</button>
     </div>
   `).join('');
 }
 
-function updateVfxProgress(id, val) {
+// Live update: only update data, don't re-render (slider stays smooth)
+function updateVfxProgressLive(id, val) {
   const s = data.vfxSkills.find(s => s.id === id);
-  if (s) { s.progress = parseInt(val); save(); renderVfxPage(); }
+  if (s) s.progress = parseInt(val);
+  // Update the percentage text next to the slider in real time
+  const pctEl = event.target.previousElementSibling;
+  if (pctEl) pctEl.textContent = val + '%';
+  const barEl = event.target.previousElementSibling?.previousElementSibling?.querySelector('.vfx-item__bar-fill');
+  // Just update data, no save() yet (avoid excessive writes)
+}
+
+// Final update: save and optionally re-render
+function updateVfxProgressFinal(id, val) {
+  const s = data.vfxSkills.find(s => s.id === id);
+  if (s) { s.progress = parseInt(val); save(); }
+  // Don't re-render here — slider already shows correct value
+  // Only re-render home page silently
+  if (document.getElementById('page-home').classList.contains('active')) {
+    renderTodayVfx();
+  }
 }
 
 // ===========================
@@ -1099,7 +866,6 @@ function renderKnowledge() {
   let articles = data.articles;
   if (catFilter) articles = articles.filter(a => a.cat === catFilter);
 
-  // Update category filter options
   const cats = ['', ...new Set(data.articles.map(a => a.cat))];
   document.getElementById('knowledgeCatFilter').innerHTML = cats.map(c =>
     `<option value="${c}">${c || '全部分类'}</option>`
@@ -1168,6 +934,175 @@ function renderFinance() {
       <div class="finance-card__amount ${f.type==='in'?'in':''}">${f.type==='in'?'+':'-'}¥${f.amount}</div>
     </div>
   `).join('');
+}
+
+// ===========================
+// CALENDAR MODULE (FIX #3: new module)
+// ===========================
+let calendarYear, calendarMonth;
+
+function initCalendar() {
+  const now = new Date();
+  calendarYear = now.getFullYear();
+  calendarMonth = now.getMonth();
+}
+
+function renderCalendar() {
+  if (calendarYear === undefined) initCalendar();
+
+  const titleEl = document.getElementById('calendarTitle');
+  titleEl.textContent = `${calendarYear}年${calendarMonth + 1}月`;
+
+  const grid = document.getElementById('calendarGrid');
+  const dayNames = ['日','一','二','三','四','五','六'];
+
+  let html = dayNames.map(d => `<div class="calendar-grid__header">${d}</div>`).join('');
+
+  const firstDay = new Date(calendarYear, calendarMonth, 1).getDay();
+  const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
+  const daysInPrevMonth = new Date(calendarYear, calendarMonth, 0).getDate();
+  const today = getToday();
+
+  // Previous month's trailing days
+  for (let i = firstDay - 1; i >= 0; i--) {
+    const d = daysInPrevMonth - i;
+    html += `<button class="calendar-day other-month" disabled>${d}</button>`;
+  }
+
+  // Current month days
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${calendarYear}-${String(calendarMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = dateStr === today;
+    const records = data.calendarRecords[dateStr];
+    const hasRecords = records && (records.habitsDone?.length > 0 || records.tasksCompleted?.length > 0);
+
+    let dotsHtml = '';
+    if (records) {
+      const dots = [];
+      if (records.habitsDone?.length > 0) dots.push('<div class="calendar-day__dot" style="background:var(--green)"></div>');
+      if (records.tasksCompleted?.length > 0) dots.push('<div class="calendar-day__dot" style="background:var(--purple)"></div>');
+      if (records.note) dots.push('<div class="calendar-day__dot" style="background:var(--amber)"></div>');
+      dotsHtml = `<div class="calendar-day__dots">${dots.join('')}</div>`;
+    }
+
+    html += `<button class="calendar-day ${isToday?'today':''}" onclick="showCalendarDetail('${dateStr}')">${d}${dotsHtml}</button>`;
+  }
+
+  // Next month's leading days
+  const totalCells = firstDay + daysInMonth;
+  const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 1; i <= remaining; i++) {
+    html += `<button class="calendar-day other-month" disabled>${i}</button>`;
+  }
+
+  grid.innerHTML = html;
+
+  // Auto-show today's detail
+  showCalendarDetail(today);
+}
+
+function calendarPrevMonth() {
+  calendarMonth--;
+  if (calendarMonth < 0) { calendarMonth = 11; calendarYear--; }
+  renderCalendar();
+}
+
+function calendarNextMonth() {
+  calendarMonth++;
+  if (calendarMonth > 11) { calendarMonth = 0; calendarYear++; }
+  renderCalendar();
+}
+
+function showCalendarDetail(dateStr) {
+  // Highlight selected day
+  document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('selected'));
+  // Find and highlight (best effort)
+  const detail = document.getElementById('calendarDetail');
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['日','一','二','三','四','五','六'];
+  detail.querySelector('#calendarDetailDate').textContent =
+    `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 周${days[d.getDay()]}`;
+
+  const records = data.calendarRecords[dateStr] || {};
+  let html = '';
+
+  // Habits
+  html += `<div class="calendar-detail__section">
+    <div class="calendar-detail__section-title">✅ 习惯打卡</div>`;
+  const habitEntries = data.habits.filter(h => h.records[dateStr]);
+  if (habitEntries.length) {
+    html += habitEntries.map(h => `<div class="calendar-detail__item">${h.icon} ${esc(h.name)} ✓</div>`).join('');
+  } else {
+    html += `<div class="calendar-detail__empty">暂无打卡记录</div>`;
+  }
+  html += `</div>`;
+
+  // Tasks completed or updated
+  html += `<div class="calendar-detail__section">
+    <div class="calendar-detail__section-title">📋 任务动态</div>`;
+  if (records.tasksCompleted?.length) {
+    html += records.tasksCompleted.map(id => {
+      const t = data.tasks.find(t => t.id === id);
+      return `<div class="calendar-detail__item">${t ? esc(t.title) : '任务 #' + id} ✓</div>`;
+    }).join('');
+  } else {
+    html += `<div class="calendar-detail__empty">暂无任务动态</div>`;
+  }
+  html += `</div>`;
+
+  // Note
+  if (records.note) {
+    html += `<div class="calendar-detail__section">
+      <div class="calendar-detail__section-title">📝 当日备注</div>
+      <div style="font-size:13px;line-height:1.6">${esc(records.note)}</div>
+    </div>`;
+  }
+
+  // Add note button
+  html += `<div style="margin-top:12px">
+    <button class="btn btn-sm" onclick="addCalendarNote('${dateStr}')">📝 添加备注</button>
+  </div>`;
+
+  // Replace only the inner content, keep the date title
+  const dateEl = detail.querySelector('#calendarDetailDate');
+  detail.innerHTML = '';
+  detail.appendChild(dateEl);
+  detail.insertAdjacentHTML('beforeend', html);
+}
+
+function addCalendarNote(dateStr) {
+  const note = prompt('添加当日备注：', (data.calendarRecords[dateStr]?.note || ''));
+  if (note === null) return; // cancelled
+  if (!data.calendarRecords[dateStr]) data.calendarRecords[dateStr] = {};
+  data.calendarRecords[dateStr].note = note;
+  save();
+  showCalendarDetail(dateStr);
+  toast('备注已保存');
+}
+
+// Auto-archive: called when a habit is toggled or task is completed
+function archiveToCalendar() {
+  const today = getToday();
+  if (!data.calendarRecords[today]) data.calendarRecords[today] = { habitsDone: [], tasksCompleted: [] };
+
+  // Archive completed tasks
+  data.tasks.forEach(t => {
+    if (t.status === 'done' && !data.calendarRecords[today].tasksCompleted.includes(t.id)) {
+      data.calendarRecords[today].tasksCompleted.push(t.id);
+    }
+  });
+
+  // Archive habit check-ins (already in h.records[today], just ensure structure)
+  data.habits.forEach(h => {
+    if (h.records[today]) {
+      if (!data.calendarRecords[today].habitsDone) data.calendarRecords[today].habitsDone = [];
+      if (!data.calendarRecords[today].habitsDone.includes(h.id)) {
+        data.calendarRecords[today].habitsDone.push(h.id);
+      }
+    }
+  });
+
+  save();
 }
 
 // ===========================
@@ -1294,7 +1229,7 @@ function openModal(type, item) {
     body.innerHTML = data.habits.map(h => `
       <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)">
         <span>${h.icon} ${esc(h.name)}</span>
-        <button class="btn btn-sm ${h.records[today]?'':''}" onclick="toggleHabit(${h.id});openModal('habit-check')" style="${h.records[today]?'background:var(--green-bg);color:var(--green)':''}">
+        <button class="btn btn-sm ${h.records[today]?'':'btn-primary'}" onclick="toggleHabit(${h.id});openModal('habit-check')" style="${h.records[today]?'background:var(--green-bg);color:var(--green)':''}">
           ${h.records[today] ? '✓ 已打卡' : '打卡'}
         </button>
       </div>
@@ -1402,7 +1337,13 @@ function saveTask() {
   if (!title) return toast('请输入标题');
   if (currentEditId) {
     const t = data.tasks.find(t => t.id === currentEditId);
-    if (t) { t.title = title; t.cat = document.getElementById('fTaskCat').value; t.status = document.getElementById('fTaskStatus').value; t.progress = parseInt(document.getElementById('fTaskProgress').value); t.note = document.getElementById('fTaskNote').value; }
+    if (t) {
+      t.title = title; t.cat = document.getElementById('fTaskCat').value;
+      t.status = document.getElementById('fTaskStatus').value;
+      t.progress = parseInt(document.getElementById('fTaskProgress').value);
+      t.note = document.getElementById('fTaskNote').value;
+      if (t.status === 'done') archiveToCalendar();
+    }
   } else {
     data.tasks.push({ id: Date.now(), title, cat: document.getElementById('fTaskCat').value, status: 'active', progress: 0, note: '' });
   }
@@ -1466,7 +1407,7 @@ function saveHealth() {
 }
 
 // ===========================
-// HABIT TOGGLE
+// HABIT TOGGLE (fixed: now properly toggles and re-renders)
 // ===========================
 function toggleHabit(id) {
   const h = data.habits.find(h => h.id === id);
@@ -1475,6 +1416,7 @@ function toggleHabit(id) {
   if (h.records[today]) delete h.records[today];
   else h.records[today] = true;
   save();
+  archiveToCalendar();
 }
 
 // ===========================
@@ -1495,9 +1437,9 @@ function esc(s) {
 }
 function simpleMarkdown(t) {
   if (!t) return '<p style="color:var(--text2)">暂无内容</p>';
-  return t.replace(/^### (.*$)/gm,'<h3>$1</h3>')
-    .replace(/^## (.*$)/gm,'<h2>$1</h2>')
-    .replace(/^# (.*$)/gm,'<h1>$1</h1>')
+  return t.replace(/^### (.*)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.*)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.*)$/gm,'<h1>$1</h1>')
     .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
     .replace(/\n\n/g,'</p><p>')
     .replace(/^/,'<p>')
@@ -1531,7 +1473,6 @@ const installBanner = document.getElementById('pwaInstallBanner');
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  // 延迟 3 秒显示安装提示，避免打扰用户
   setTimeout(() => {
     if (deferredPrompt) installBanner.style.display = 'block';
   }, 3000);
@@ -1563,11 +1504,6 @@ window.addEventListener('appinstalled', () => {
 // INIT
 // ===========================
 renderHome();
-// Set knowledge category options
-const cats = ['', ...new Set(data.articles.map(a => a.cat))];
-document.getElementById('knowledgeCatFilter').innerHTML = cats.map(c =>
-  `<option value="${c}">${c || '全部分类'}</option>`
-).join('');
 </script>
 </body>
 </html>
